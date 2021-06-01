@@ -3,9 +3,8 @@
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
       <div class="card card-signin my-5 shadow">
         <div class="card-body">
-          <h2>Log in</h2>
-          
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <h2>New User</h2>
+          <%= form_with model: [:admin, @user] do |f| %>
             <div class="field">
               <%= f.label :email %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %><br />
@@ -16,20 +15,17 @@
               <%= f.password_field :password, autocomplete: "current-password",class: "form-control" %><br />
             </div>
 
-            <% if devise_mapping.rememberable? %>
-              <div class="field">
-                <%= f.check_box :remember_me %>
-                <%= f.label :remember_me %>
-              </div>
-            <% end %>
+            <div class="field">
+              <%= f.label :name %><br />
+              <%= f.text_field :name, class: "form-control" %><br />
+            </div>
 
             <div class="actions">
-              <%= f.submit "Log in",class: "btn btn-lg btn-primary btn-block" %><br />
+              <%= f.submit "Create User",class: "btn btn-lg btn-primary btn-block" %><br />
             </div>
+            <%= link_to 'Back', admin_user_path %>
           <% end %>
-
-          <%= render "devise/shared/links" %>
-        </div>
+          </div>
       </div>
     </div>
   </div>
